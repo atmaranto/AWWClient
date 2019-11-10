@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Automated Weather Watcher</string>
+    <string name="header_text">Enter your desired temperature to begin</string>
+    <string name="status_network">Requesting server analysis</string>
+    <string name="status_needs_location">We need permission to view your location to optimize the results.</string>
+    <string name="status_network_failed">Failed to access the server; check your internet connection.</string>
+    <string name="status_temperature_invalid">Invalid temperature entered</string>
+    <string name="current_temperature">Current temperature</string>
+    <string name="desired_temperature">Desired temperature</string>
+    <string name="submit">Submit for analysis</string>
+    <string name="occupancy">Occupancy (optional)</string>
+    <string name="recommend_text">We would recommend setting your thermostat to</string>
+    <string name="unit_preference">Unit preference</string>
+    <string name="degrees_f">&#176;F</string>
+    <string name="degrees_c">&#176;C</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_room_temperature">70</integer>
+    <integer name="text_fade_duration">250</integer>
+    <integer name="bar_shift_duration">250</integer>
+</resources>

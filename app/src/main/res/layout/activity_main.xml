@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header_text"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/desired_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/desired_temperature"
+        android:inputType="numberDecimal"
+        android:layout_margin="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header" />
+
+    <EditText
+        android:id="@+id/occupancy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/occupancy"
+        android:inputType="number"
+        android:layout_margin="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/desired_temperature" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/submit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desired_temperature" />
+
+    <TextView
+        android:id="@+id/recommend_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recommend_text"
+        android:alpha="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submit"
+        app:layout_constraintBottom_toTopOf="@id/progress_temperature"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress_temperature"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/circular_temperature"
+        android:background="@drawable/circle"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="150"
+        android:progress="@integer/default_room_temperature"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="@id/progress_temperature"
+        app:layout_constraintBottom_toBottomOf="@id/progress_temperature"
+        app:layout_constraintRight_toRightOf="@id/progress_temperature"
+        app:layout_constraintLeft_toLeftOf="@id/progress_temperature" />
+
+    <TextView
+        android:id="@+id/unit_preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/unit_preference"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fOrC" />
+
+    <Switch
+        android:id="@+id/fOrC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/degrees_f"
+        app:layout_constraintBaseline_toBaselineOf="@+id/fOrC"
+        app:layout_constraintLeft_toLeftOf="@id/unit_preference" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/degrees_c"
+        app:layout_constraintBaseline_toBaselineOf="@+id/fOrC"
+        app:layout_constraintRight_toRightOf="@id/unit_preference" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
