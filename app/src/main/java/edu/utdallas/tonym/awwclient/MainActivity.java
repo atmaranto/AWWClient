@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess() {
                          barText.setText(String.format("%.2f", forceLocal(floatResponse)));
                          recommendText.setText(R.string.recommend_text);
-                         animateTemperature(floatResponse);
+                         animateTemperature(cToF(floatResponse));
 
                          daysData = stringResponse.split(" ");
 
