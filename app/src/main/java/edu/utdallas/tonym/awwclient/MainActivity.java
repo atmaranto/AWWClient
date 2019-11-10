@@ -204,18 +204,18 @@ public class MainActivity extends AppCompatActivity {
     private float forceF(float value) {
         //Forces the value to fahrenheit
         if(fOrC.isChecked()) {
-            return cToF(value);
+            return value;
         }
 
-        return value;
+        return fToC(value);
     }
 
     private float forceLocal(float value) {
         if(fOrC.isChecked()) {
-            return fToC(value);
+            return value;
         }
 
-        return value;
+        return cToF(value);
     }
 
     private float convert(float value, boolean checked) {

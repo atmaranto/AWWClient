@@ -65,8 +65,8 @@
 
     <ProgressBar
         android:id="@+id/progress_temperature"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:indeterminate="false"
         android:progressDrawable="@drawable/circular_temperature"
         android:background="@drawable/circle"
