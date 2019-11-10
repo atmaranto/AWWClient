@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess() {
                          barText.setText(String.format("%.2f", forceLocal(floatResponse)));
+                         recommendText.setText(R.string.recommend_text);
                          animateTemperature(forceF(floatResponse));
                     }
 

@@ -16,7 +16,7 @@ public class API {
     public final static int DEFAULT_OCCUPANCY = 0;
 
     public static void checkTemperature(ResponseHandler handler, float desiredTemp, float latitude, float longitude, int occupancy) {
-        String url = checkPath + "?desiredTemp=" + desiredTemp + "&latitude=" + latitude + "&longitude=" + longitude;
+        String url = checkPath + "?temperature=" + desiredTemp + "&latitude=" + latitude + "&longitude=" + longitude;
         if(occupancy > 0) {
             url = url + "&occupancy=" + occupancy;
         }
@@ -54,6 +54,7 @@ public class API {
         String method = handler.method;
 
         HttpURLConnection connection = null;
+        handler.failed = false;
 
         try {
             connection = (HttpURLConnection)((new URL(url)).openConnection());
@@ -70,9 +71,19 @@ public class API {
             }
             catch(NumberFormatException e) {
                 handler.stringResponse = response;
+                if(response.contains(" ")) {
+                    try {
+                        handler.floatResponse = Float.valueOf(response.split(" ")[0]);
+                    }
+                    catch(Exception e3) {
+
+                    }
+                }
             }
         }
-        catch(Exception e){
+        catch(Exception e) {
+            e.printStackTrace();
+            handler.failed = true;
             try {
                 InputStream es = connection.getErrorStream();
                 handler.stringResponse = readAllFrom(es);
@@ -111,7 +122,7 @@ public class API {
             super.onPostExecute(responseHandler);
 
             responseHandler.onComplete();
-            if(responseHandler.stringResponse != null) {
+            if(responseHandler.failed) {
                 responseHandler.onError();
             }
             else {

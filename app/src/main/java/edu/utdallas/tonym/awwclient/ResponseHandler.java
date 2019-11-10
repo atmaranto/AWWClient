@@ -5,6 +5,7 @@ public abstract class ResponseHandler {
     public String method;
     public String stringResponse = null;
     public float floatResponse;
+    public boolean failed;
 
     public void onComplete() {}
     public void onError() {}
