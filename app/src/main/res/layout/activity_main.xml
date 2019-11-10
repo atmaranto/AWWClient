@@ -121,4 +121,22 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/fOrC"
         app:layout_constraintRight_toRightOf="@id/unit_preference" />
 
+    <LinearLayout
+        android:id="@+id/days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/unit_preference"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <include layout="@layout/fragment_day" />
+        <include layout="@layout/fragment_day" />
+        <include layout="@layout/fragment_day" />
+        <include layout="@layout/fragment_day" />
+        <include layout="@layout/fragment_day" />
+        <include layout="@layout/fragment_day" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

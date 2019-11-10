@@ -22,10 +22,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar bar;
     private TextView barText;
     private TextView recommendText;
+
+    private LinearLayout daysPanel;
+    private String[] daysData = null;
 
     private SharedPreferences preferences;
     private SharedPreferences.Editor preferencesEditor;
@@ -129,14 +138,18 @@ public class MainActivity extends AppCompatActivity {
                     public void onSuccess() {
                          barText.setText(String.format("%.2f", forceLocal(floatResponse)));
                          recommendText.setText(R.string.recommend_text);
-                         animateTemperature(forceF(floatResponse));
+                         animateTemperature(floatResponse);
+
+                         daysData = stringResponse.split(" ");
+
+                         populateDays();
                     }
 
                     @Override
                     public void onError() {
                         setStatus(R.string.status_network_failed, true);
-                        animateTemperature(forceF((int)preferences.getFloat(desiredTempKey, DEFAULT_TEMP)));
-                        barText.setText(String.format("%.2f", preferences.getFloat(desiredTempKey, DEFAULT_TEMP)));
+                        //animateTemperature(forceF((int)preferences.getFloat(desiredTempKey, DEFAULT_TEMP)));
+                        //barText.setText(String.format("%.2f", preferences.getFloat(desiredTempKey, DEFAULT_TEMP)));
                     }
                 };
 
@@ -165,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
                 calculateTemperatureText(checked);
             }
         });
+
+        daysPanel = findViewById(R.id.days);
     }
 
     private boolean isValidFloat(String s) {
@@ -221,6 +236,10 @@ public class MainActivity extends AppCompatActivity {
         if(barText.getText().length() > 0) {
             barText.setText(String.format("%.2f", convert(Float.parseFloat((String)barText.getText()), checked)));
         }
+
+        if(daysData != null) {
+            populateDays();
+        }
     }
 
     private void fadeIn(View view, long duration) {
@@ -257,6 +276,26 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             recommendText.setTextColor(defaultColor);
+        }
+    }
+
+    static final String[] daysOfWeek = {"SUN", "MON", "TUE", "WED", "THR", "FRI", "SAT"};
+
+    private void populateDays() {
+        int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY;
+
+        for(int i = 0; i < daysPanel.getChildCount(); i++) {
+            View v = daysPanel.getChildAt(i);
+
+            TextView day = v.findViewById(R.id.day);
+            TextView value = v.findViewById(R.id.day_data);
+
+            day.setText(daysOfWeek[dayOfWeek++]);
+            if(dayOfWeek >= daysOfWeek.length) {
+                dayOfWeek = 0;
+            }
+
+            value.setText(String.format("%.2f", forceLocal(Float.valueOf(daysData[i+1]))));
         }
     }
 }
